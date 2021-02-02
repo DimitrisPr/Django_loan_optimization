@@ -1,0 +1,24 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>{% block title %}Loans{% endblock %}</title>
+</head>
+<body style="margin-top: 20px; text-align: center;">
+  <main>
+    {% block content %}
+        {% if user.is_authenticated %}
+            Hi {{ user.username }}!
+            <p><a href="{% url 'logout' %}">Log Out</a></p>
+        {% else %}
+        
+            <form method="post">
+            <p><a href="/admin">Log In</a></p>
+            </form>
+        {% endif %}
+    {% endblock %}
+  </main>
+</body>
+</html>

@@ -1,0 +1,101 @@
+{% extends 'base.html' %}
+
+{% block title %}Loans App{% endblock %}
+
+{% block content %}
+    {% if user.is_authenticated %}
+    
+        <h1> Hi {{ user.first_name }} </h1>
+
+        {% if plans %}
+         <h3> The maximum number of installments is <b> {{maximum}} </b> </h3>
+        {% endif %}
+
+        <label> This table was loaded from the database.</label>
+        <table style = "width: 350px; margin: 0 auto;border: solid 1px black; border-collapse: collapse;">
+            <tbody>
+                <tr>
+                    <td> Class Name </td> 
+                    <td> # of available Installment Plans </td>
+                    <td> Amount € </td>
+                    <td> Duration in months </td>
+                </tr>
+                {% for plan in plans %}
+                    <tr>
+                        <td> {{ plan.class_name }} </td> 
+                        <td> {{ plan.count }} </td>
+                        <td> {{ plan.amount }} </td>
+                        <td> {{ plan.duration }} </td>
+                    </tr>
+        {% endfor %}
+
+            </tbody>
+        </table>
+
+        <h2> POST Form </h2> 
+        <form method="POST" style="width: 200px; margin:20px auto; text-align: center;  ">
+            {% csrf_token %}   
+            <label for="budget">Budget</label>
+            <input id="budget" type="number" name="budget" value="0">
+            </br>
+            </br>
+            <label for="reset_db">Reset DB </label>
+            <br>
+            <br>
+            <input id="reset_db" type="checkbox" name="reset_db">
+            </br>
+            </br>
+            <input type="submit" value="Submit">
+        </form>
+        <p><a href="{% url 'logout' %}">Log Out</a></p>
+    
+    {% else %}
+
+    <!-- Non-authenticated users -->
+        <h1>Home</h1>
+                <label style ="margin-bottom: 10px; display: block;"> Login Credentials </login>
+                <table style = "width: 350px; margin: 0 auto;border: solid 1px black; border-collapse: collapse;">
+                <tbody>
+                    <tr>
+                        <td><b>Username</b></td>
+                        <td><b>Password</b></td>
+                        <td><b>Type</b></td>
+                    </tr>
+                    <tr>
+                        <td>admin</td>
+                        <td>unsafepass</td>
+                        <td>SuperUser</td>
+                    </tr>
+                    <tr>
+                        <td>user</td>
+                        <td>unsafepass</td>
+                        <td>User</td>
+                    </tr>
+                </tbody>
+            </table>
+        <a href="{% url 'login' %}">Log In</a>
+    {% endif %}
+
+
+<!-- Some basic CSS -->
+<style> 
+    * , p { text-align:center; min-width: 100px;} 
+    
+    td, tr {
+        border: solid 1px black;
+    }
+    a {
+        position: relative;
+        display: block;
+        width: 60px;
+        margin: 0 auto;
+        border: 1px solid #f9f9f9;
+        border-radius: 5%;
+        padding: 10px;
+        margin-top: 20px;
+        background: #f2f2f2;
+    }
+</style>
+
+{% endblock %}
+

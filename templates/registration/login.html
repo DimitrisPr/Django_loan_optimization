@@ -1,0 +1,11 @@
+<!-- templates/registration/login.html -->
+<h1> Login Form </h1>
+<form method="post">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit">Log In</button>
+</form>
+
+<style>
+  * { width: 400px; margin: 10px auto; text-align: center;}
+</style>

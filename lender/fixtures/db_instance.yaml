@@ -1,0 +1,28 @@
+- model: lender.LoanPlans
+  pk: 1
+  fields:
+    class_name: Class A
+    count: 50
+    amount: 300
+    duration: 3
+- model: lender.LoanPlans
+  pk: 2
+  fields:
+    class_name: Class B
+    count: 50
+    amount: 600
+    duration: 3
+- model: lender.LoanPlans
+  pk: 3
+  fields:
+    class_name: Class C
+    count: 50
+    amount: 300
+    duration: 6
+- model: lender.LoanPlans
+  pk: 4
+  fields:
+    class_name: Class D
+    count: 50
+    amount: 600
+    duration: 6
